@@ -5,7 +5,7 @@ import {
 import { useState } from "react";
 import styled from "styled-components";
 
-const Wrapper = styled(motion.div)`
+const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -17,9 +17,6 @@ const Box = styled(motion.div)`
   height: 200px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
-  display: flex;
-  justify-content : center;
-  align-items: center;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
@@ -43,6 +40,12 @@ const Overay = styled(motion.div)`
   align-items : center;
 `;
 
+const overlay = {
+  hidden: { backgroundColor: "rgba(0, 0, 0, 0)" },
+  visible: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
+  exit: { backgroundColor: "rgba(0, 0, 0, 0)" },
+}
+
 function App() {
   
   const [id, setId] = useState<null|number>(null);
@@ -58,11 +61,13 @@ function App() {
       <AnimatePresence>
         {id ? (
           <Overay 
+            variants={overlay}
             onClick={() => setId(null)}
-            initial={{backgroundColor: "rgba(0, 0, 0, 0.0)"}} 
-            animate={{ backgroundColor: "rgba(0, 0, 0, 0.5)"}}
-            exit={{backgroundColor: "rgba(0, 0, 0, 0.0)"}}>
-              <Box layoutId={"box" + id} style={{width:400, height:200}}/>
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <Box layoutId={"box" + id} style={{width:400, height:200}}/>
           </Overay>
           ) : null }
       </AnimatePresence>
