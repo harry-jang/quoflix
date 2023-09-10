@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/quoflix/static/js/main.f4501f95.js",
+    "index.html": "/quoflix/index.html",
+    "main.f4501f95.js.map": "/quoflix/static/js/main.f4501f95.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.f4501f95.js"
+  ]
+}
