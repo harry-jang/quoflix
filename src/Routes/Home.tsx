@@ -11,6 +11,7 @@ import Banner from "../Components/Banner";
 const Wrapper = styled.div`
     background:black;
     padding-bottom: 200px;
+    overflow: hidden;
 `;
 
 const Loader = styled.div`
