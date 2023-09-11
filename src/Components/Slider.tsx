@@ -161,7 +161,7 @@ function Slider ({
                         transition={{type:"tween"}}               
                         $bgPhoto={makeImagePath(movie.poster_path, "w500" )}>
                             <Info variants={infoVariants}>
-                                <h4>{movie.title}</h4>
+                                <h4>{movie.title? movie.title : movie.name}</h4>
                             </Info>
                         </Box>
                 ))}

@@ -30,7 +30,7 @@ function Banner({
   }) {
     return (
         <Wrapper $bgPhoto={makeImagePath(bannerInfo.backdrop_path || "")}>
-            <Title>{bannerInfo.title}</Title>
+            <Title>{bannerInfo.title?bannerInfo.title : bannerInfo.name}</Title>
             <Overview>{bannerInfo.overview}</Overview>
         </Wrapper>
     );
