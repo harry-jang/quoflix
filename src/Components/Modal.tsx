@@ -12,6 +12,7 @@ const Overlay = styled(motion.div)`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
+    z-index: 99;
 `;
 
 const Wrapper = styled(motion.div)`
@@ -23,6 +24,7 @@ const Wrapper = styled(motion.div)`
     margin:0 auto;
     overflow: auto;
     border-radius: 15px;
+    z-index: 100;
     background-color: ${(props) => props.theme.black.lighter};
 `;
 

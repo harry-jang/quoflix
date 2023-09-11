@@ -9,7 +9,8 @@ import Modal from "./Modal";
 
 const Wrapper = styled.div`
     position: relative;
-    top : -100px;
+    top : -600px;
+    margin-top: 250px;
 `;
 
 const Row = styled(motion.div)`
