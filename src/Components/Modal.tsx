@@ -61,10 +61,16 @@ function Modal({dataId, listType, mediaType, mediaContent} : IModal) {
     const navigate = useNavigate();
     const modalMatch = useMatch(`/${mediaType}/${listType}/:id`);
 
-    const onOverlayClick = () => navigate(`/`)
+    const onOverlayClick = () => {
+        if(mediaType === MediaType.tv) {
+            return navigate(`/${mediaType}`)
+        }
+
+        return navigate(`/`)
+    }
     const { scrollY } = useScroll();
 
-    console.log(scrollY, "scrollY");
+    console.log("Modal mediaType:", mediaType);
 
     return (
         <>

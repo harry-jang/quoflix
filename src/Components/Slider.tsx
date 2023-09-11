@@ -122,6 +122,8 @@ function Slider ({
             const maxIndex = Math.floor(totalMovies / offset) -1; // 페이지가 0에서 시작하기 때문에 1 감소
             setIndex((prev) => (prev === maxIndex? 0 : prev +1));
         }
+        console.log("slider mediaType:", mediaType);
+        
     };
 
     const mediaMatch = useMatch(`/${mediaType}/${listType}/:movieId`);
@@ -133,6 +135,7 @@ function Slider ({
 
     const clickedMovie = mediaMatch?.params.movieId && data?.results.find(movie => String(movie.id) === mediaMatch.params.movieId)
 
+    console.log(clickedMovie);
     return (
     <Wrapper>
         <Title>{title}</Title>

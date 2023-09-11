@@ -31,7 +31,8 @@ function Tv() {
     const { data:topRatedInfos, isLoading:loadingTopRated } = useQuery<IGetMediaResult>(["tv", "topRated"], getTopRatedTvShows);
     const { data:onTheAirInfos, isLoading:loadingOnTheAir } = useQuery<IGetMediaResult>(["tv", "onTheAir"], getOnTheAirTvShows);
     
-    const mediaType = MediaType.movie;
+    console.log(airingTodayInfos);
+    const mediaType = MediaType.tv;
 
     return (<Wrapper>
     {loadingAiringToday? (
