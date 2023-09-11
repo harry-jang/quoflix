@@ -5,6 +5,7 @@ export enum ListType {
     "upcoming"="upcoming",
     "on_the_air"="on_the_air",
     "airing_today"="airing_today",
+    "search"="search",
 }
 
 export enum MediaType {

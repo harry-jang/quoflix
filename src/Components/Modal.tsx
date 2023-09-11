@@ -83,7 +83,7 @@ function Modal({dataId, listType, mediaType, mediaContent} : IModal) {
                 style={{ top :  scrollY.get()-400 }}
             >
                 <ModalCover style={{ backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImagePath(mediaContent.backdrop_path, "w500")})`}} />
-                <ModalTitle>{mediaContent.title}</ModalTitle>
+                <ModalTitle>{mediaContent.title? mediaContent.title : mediaContent.name}</ModalTitle>
                 <ModalOverview>{mediaContent.overview}</ModalOverview>
             </Wrapper>                
         </>

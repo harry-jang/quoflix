@@ -6,12 +6,13 @@ export interface IMovie {
     id: number;
     backdrop_path : string;
     poster_path: string;
-    title: string;
+    title?: string;
+    name?:string;
     overview: string;
 }
 
 export interface IGetMediaResult {
-    dates: {
+    dates?: {
         maximum: string;
         minimum: string;
     };
@@ -60,3 +61,14 @@ export function getTopRatedTvShows() {
       response.json()
     );
 }
+
+export function searchMovieData(keyword: string) {
+    return fetch(`${BASE_PATH}/search/movie?api_key=${API_KEY}&query=${keyword}`).then((response) => 
+        response.json()
+    );
+}
+
+export function searchTvShowData(keyword: string) {
+    return fetch(`${BASE_PATH}/search/tv?api_key=${API_KEY}&query=${keyword}`).then((response) => 
+        response.json())
+    };
