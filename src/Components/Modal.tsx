@@ -3,7 +3,8 @@ import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ListType, MediaType } from "../Constants";
 import { makeImagePath } from "../utils";
-import { IMovie } from "../api";
+import { IDetailResult, IMovie, getDetailData } from "../api";
+import { useQuery } from "react-query";
 
 const Overlay = styled(motion.div)`
     position: fixed;
@@ -18,7 +19,8 @@ const Overlay = styled(motion.div)`
 const Wrapper = styled(motion.div)`
     position: absolute;
     width: 40vw;
-    height: 80vh;
+    height: 60vh;
+    top : 100px;
     left: 0;
     right: 0;
     margin:0 auto;
@@ -41,6 +43,13 @@ const ModalTitle = styled.h3`
     font-size:46px;
     position: relative;
     top: -80px;
+`;
+
+const ModalDetail = styled.p`
+    padding:20px;
+    position: relative;
+    top: -80px;
+    color: ${(props) => props.theme.white.lighter};
 `;
 
 const ModalOverview = styled.p`
@@ -70,8 +79,13 @@ function Modal({dataId, listType, mediaType, mediaContent} : IModal) {
     }
     const { scrollY } = useScroll();
 
-    console.log("Modal mediaType:", mediaType);
+    const { data } = useQuery<IDetailResult>(
+        [mediaType + dataId, "detail" + dataId],
+        () => getDetailData(mediaType, dataId) || null
+      );
 
+    console.log("Modal mediaType:", mediaType);
+    
     return (
         <>
             <Overlay 
@@ -80,10 +94,10 @@ function Modal({dataId, listType, mediaType, mediaContent} : IModal) {
                 exit={{ opacity : 0}}/>
             <Wrapper 
                 layoutId={listType + "_" + modalMatch?.params.id}
-                style={{ top :  scrollY.get()-400 }}
             >
                 <ModalCover style={{ backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImagePath(mediaContent.backdrop_path, "w500")})`}} />
                 <ModalTitle>{mediaContent.title? mediaContent.title : mediaContent.name}</ModalTitle>
+                <ModalDetail>⏱️ : {data?.runtime}분 / 출시일 : {data?.release_date} </ModalDetail>
                 <ModalOverview>{mediaContent.overview}</ModalOverview>
             </Wrapper>                
         </>
